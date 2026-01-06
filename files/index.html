@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyLearn | Complete Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Page Container -->
+    <div id="page-container">
+        <!-- Loading Page -->
+        <div class="splash-container" id="loading-page">
+            <div class="logo-card">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            
+            <h1 class="logo-text">Poly<span class="logo-accent">Learn</span></h1>
+            
+            <p class="tagline">Master Polynomials the <span class="highlight">Fun and Interactive</span> way!</p>
+            
+            <div class="loading-container">
+                <div class="loading-text">
+                    <i class="fas fa-spinner fa-spin"></i> Loading
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress" id="loadingProgress"></div>
+                </div>
+                
+                <div class="percentage" id="percentage">0%</div>
+                
+                <button class="skip-button" id="skipLoading">
+                    Skip Intro
+                </button>
+            </div>
+        </div>
+
+        <!-- Login Page -->
+        <div id="login-page" class="hidden">
+            <div class="container">
+                <div class="welcome-section">
+                    <h1>Welcome to PolyLearn</h1>
+                    <p class="tagline">where learning meets fun!</p>
+                    
+                    <ul class="features">
+                        <li><i class="fas fa-graduation-cap"></i> Interactive courses for all skill levels</li>
+                        <li><i class="fas fa-gamepad"></i> Gamified learning experience</li>
+                        <li><i class="fas fa-chart-line"></i> Track your progress with analytics</li>
+                        <li><i class="fas fa-users"></i> Join a community of learners</li>
+                    </ul>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-header">
+                        <h2>Login to Your Account</h2>
+                        <p>Enter your credentials to access your learning dashboard</p>
+                    </div>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email or Username</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="loginEmail" class="form-control" placeholder="Enter your email or username">
+                            </div>
+                            <div id="loginEmailError" class="error-message">Please enter a valid email or username</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password">
+                            </div>
+                            <div id="loginPasswordError" class="error-message">Password must be at least 6 characters long</div>
+                        </div>
+                        
+                        <div class="forgot-password">
+                            <a href="#" id="forgotPasswordLink">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                    
+                    <div class="switch-link">
+                        Don't have an account? <a href="#" id="switchToSignup">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signup-page" class="hidden">
+            <div class="container">
+                <div class="welcome-section">
+                    <h1>Join PolyLearn Today</h1>
+                    <p class="tagline">where learning meets fun!</p>
+                    
+                    <ul class="features">
+                        <li><i class="fas fa-rocket"></i> Start your learning journey in minutes</li>
+                        <li><i class="fas fa-shield-alt"></i> Secure & privacy-focused platform</li>
+                        <li><i class="fas fa-award"></i> Earn certificates and badges</li>
+                        <li><i class="fas fa-clock"></i> Learn at your own pace</li>
+                    </ul>
+                </div>
+                
+                <div class="form-section">
+                    <div class="form-header">
+                        <h2>Create Account</h2>
+                        <p>Fill in your details to start your PolyLearn journey</p>
+                    </div>
+                    
+                    <form id="signupForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signupEmail">Email Address</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email address">
+                                </div>
+                                <div id="signupEmailError" class="error-message">Please enter a valid email address</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="signupUsername">Username</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username">
+                                </div>
+                                <div id="signupUsernameError" class="error-message">Username must be 3-20 characters</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="signupPassword">Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="signupPassword" class="form-control" placeholder="Create a strong password">
+                                </div>
+                                <div class="password-strength">
+                                    <div id="strengthMeter" class="strength-meter"></div>
+                                </div>
+                                <div id="signupPasswordError" class="error-message">Password must be at least 8 characters</div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-with-icon">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="confirmPassword" class="form-control" placeholder="Re-enter your password">
+                                </div>
+                                <div id="confirmPasswordError" class="error-message">Passwords do not match</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="terms-group">
+                                <input type="checkbox" id="terms" class="terms-checkbox">
+                                <label for="terms" class="terms-label">
+                                    I agree to the <a href="#" id="termsLink">Terms and Conditions</a>
+                                </label>
+                            </div>
+                            <div id="termsError" class="error-message">You must accept the terms and conditions</div>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-user-plus"></i> Sign Up
+                        </button>
+                    </form>
+                    
+                    <div class="switch-link">
+                        Already have an account? <a href="#" id="switchToLogin">Login here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="hidden">
+            <div class="container">
+                <!-- Header -->
+                <header class="header">
+                    <div class="logo" id="dashboardLogo">
+                        <i class="fas fa-graduation-cap logo-icon"></i>
+                        <div class="logo-text">Poly<span class="logo-accent">Learn</span></div>
+                    </div>
+                    
+                    <nav class="nav-items">
+                        <a href="#" class="nav-item active">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="#" class="nav-item" id="navLessons">
+                            <i class="fas fa-book"></i>
+                            <span>Lessons</span>
+                        </a>
+                        <a href="#" class="nav-item" id="navGames">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Games</span>
+                        </a>
+                        <a href="#" class="nav-item" id="navProgress">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progress</span>
+                        </a>
+                    </nav>
+                    
+                    <div class="user-info">
+                        <div class="user-avatar" id="userInitial">JS</div>
+                        <div>
+                            <div style="font-weight: 600;" id="userNameDisplay">John Smith</div>
+                            <button class="logout-btn" id="logoutBtn">Logout</button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Dashboard Content -->
+                <div class="dashboard-container">
+                    <!-- Welcome Card -->
+                    <section class="card welcome-card">
+                        <div class="welcome-header">
+                            <h1 class="welcome-title">Welcome,</h1>
+                            <div class="date-display" id="currentDate">Loading date...</div>
+                        </div>
+                        
+                        <div class="student-info">
+                            <div class="student-avatar-large" id="largeUserInitial">JS</div>
+                            <div class="student-details">
+                                <h2 class="student-name">Welcome back, <span id="studentName">John Smith</span>!</h2>
+                                <p style="color: var(--text-light); margin-bottom: 15px;">
+                                    You're making excellent progress in your polynomial journey. Keep up the great work!
+                                </p>
+                                <div class="achievement-badge">
+                                    <i class="fas fa-medal"></i> Polynomial Master Level 3
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Progress Summary Card -->
+                    <section class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-chart-bar"></i> Progress Summary
+                            </h2>
+                            <p class="card-subtitle">Your learning progress this week</p>
+                        </div>
+                        
+                        <div class="progress-items">
+                            <!-- Lessons Completed -->
+                            <div class="progress-item">
+                                <div class="item-left">
+                                    <div class="item-icon">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div>
+                                        <h3>Lessons Completed</h3>
+                                        <p>Total polynomial lessons finished</p>
+                                    </div>
+                                </div>
+                                <div class="item-value" id="lessonsCount">12<span class="item-unit">/20</span></div>
+                            </div>
+                            
+                            <!-- Practice Exercises -->
+                            <div class="progress-item">
+                                <div class="item-left">
+                                    <div class="item-icon">
+                                        <i class="fas fa-pen-fancy"></i>
+                                    </div>
+                                    <div>
+                                        <h3>Practice Exercises</h3>
+                                        <p>Exercises solved correctly</p>
+                                    </div>
+                                </div>
+                                <div class="item-value" id="exercisesCount">84<span class="item-unit">/100</span></div>
+                            </div>
+                            
+                            <!-- Quiz Game Score -->
+                            <div class="progress-item">
+                                <div class="item-left">
+                                    <div class="item-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div>
+                                        <h3>Quiz Game Score</h3>
+                                        <p>Your high score in polynomial games</p>
+                                    </div>
+                                </div>
+                                <div class="item-value" id="quizScore">925<span class="item-unit">points</span></div>
+                            </div>
+                            
+                            <!-- Average Time Spent -->
+                            <div class="progress-item">
+                                <div class="item-left">
+                                    <div class="item-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h3>Average Time Spent</h3>
+                                        <p>Daily average learning time</p>
+                                    </div>
+                                </div>
+                                <div class="item-value" id="avgTime">45<span class="item-unit">minutes/day</span></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Quick Actions -->
+                    <section class="card full-width-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-bolt"></i> Quick Actions
+                            </h2>
+                            <p class="card-subtitle">Continue your learning journey</p>
+                        </div>
+                        
+                        <div class="actions-grid">
+                            <button class="btn-primary" id="continueLesson">
+                                <i class="fas fa-play-circle"></i> Continue Lesson
+                            </button>
+                            
+                            <button class="btn-secondary" id="practiceExercises">
+                                <i class="fas fa-pencil-alt"></i> Practice Exercises
+                            </button>
+                            
+                            <button class="btn-primary" id="playQuiz">
+                                <i class="fas fa-gamepad"></i> Play Quiz Game
+                            </button>
+                            
+                            <button class="btn-secondary" id="viewProgress">
+                                <i class="fas fa-chart-line"></i> View Progress Report
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal" id="logoutModal">
+        <div class="modal-content">
+            <h3>Confirm Logout</h3>
+            <p>Are you sure you want to logout from your PolyLearn account?</p>
+            <div class="modal-buttons">
+                <button class="btn-secondary" id="cancelLogout">Cancel</button>
+                <button class="btn-primary" id="confirmLogout">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <h3>Terms and Conditions</h3>
+            <p>By using PolyLearn, you agree to our terms of service. Your data is protected and will not be shared with third parties.</p>
+            <div class="modal-buttons">
+                <button class="btn-primary" id="closeTerms">I Agree</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
